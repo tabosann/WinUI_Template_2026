@@ -30,7 +30,7 @@
   
   <PropertyGroup Condition="'$(Packaged)'=='true'">
     <AppxBundleNameForOutput>$(ProjectName)</AppxBundleNameForOutput>
-	<AppInstallerUri>$(SolutionDir)bin$(ProjectName)\$(TargetFramework)</AppInstallerUri>
+	<AppInstallerUri>$(SolutionDir)bin$(ProjectName)\$(Configuration)\$(TargetFramework)</AppInstallerUri>
 	<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
 	<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
 	<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
@@ -46,6 +46,7 @@
 	<IsAotCompatible>true</IsAotCompatible>
 	<SuppressTrimAnalysisWarnings>false</SuppressTrimAnalysisWarnings>
 	<OptimizationPreference>speed</OptimizationPreference>
+	<AppxBundlePlatforms>x64|arm64</AppxBundlePlatforms>
   </PropertyGroup>
 
   <ItemGroup>
