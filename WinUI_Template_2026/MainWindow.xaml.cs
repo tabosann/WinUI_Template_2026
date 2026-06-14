@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml;
+using Microsoft.UI;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -14,6 +15,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System;
 using Windows.Foundation.Collections;
 using Windows.Foundation;
+using Windows.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -43,6 +45,20 @@ namespace WinUI_Template_2026
         {
             PerfStopwatch.Stop();
             m_titleBarText.Text = $"Startup (Ticks, Time) = ({PerfStopwatch.ElapsedTicks}, {PerfStopwatch.ElapsedMilliseconds} ms)";
+        }
+
+        private void RootGrid_ActualThemeChanged(FrameworkElement sender, object args)
+        {
+            // OSのテーマに合わせてキャプションボタンの色を変更.
+            bool darkTheme = sender.ActualTheme == ElementTheme.Dark;
+            if (AppWindow != null) {
+                var foregroundColor = darkTheme ? Colors.White : Colors.Black;
+                AppWindow.TitleBar.ButtonForegroundColor = foregroundColor;
+                AppWindow.TitleBar.ButtonHoverForegroundColor = foregroundColor;
+
+                var backgroundHoverColor = darkTheme ? Color.FromArgb(24, 255, 255, 255) : Color.FromArgb(24, 0, 0, 0);
+                AppWindow.TitleBar.ButtonHoverBackgroundColor = backgroundHoverColor;
+            }
         }
 
         private void Grid10_Loaded(object sender, RoutedEventArgs e)
