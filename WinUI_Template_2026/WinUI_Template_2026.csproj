@@ -13,6 +13,17 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <Nullable>enable</Nullable>
     <Configurations>Debug;Release;Debug_Unpackaged;Release_Unpackaged</Configurations>
+	<Packaged>true</Packaged>
+	<Packaged Condition="'$(Configuration)'=='Debug_Unpackaged' or '$(Configuration)'=='Release_Unpackaged'">false</Packaged>
+	<Optimized>true</Optimized>
+	<Optimized Condition="'$(Configuration)'=='Debug' or '$(Configuration)'=='Debug_Unpackaged'">false</Optimized>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Packaged)'=='false'">
+	<WindowsPackageType>None</WindowsPackageType>
+	<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+	<PublishSingleFile>true</PublishSingleFile>
+    <PublishDir>bin\$(Configuration)\$(TargetFramework)\$(RuntimeIdentifier)\publish\</PublishDir>
   </PropertyGroup>
 
   <ItemGroup>
