@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,12 +25,20 @@ namespace WinUI_Template_2026
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        Stopwatch PerfStopwatch { get; init; } = Stopwatch.StartNew();
+
         public MainWindow()
         {
             InitializeComponent();
 
             ExtendsContentIntoTitleBar = true;
             AppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Tall;
+        }
+
+        private void RootGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            PerfStopwatch.Stop();
+            m_titleBarText.Text = $"Startup Time {PerfStopwatch.ElapsedMilliseconds} ms";
         }
     }
 }

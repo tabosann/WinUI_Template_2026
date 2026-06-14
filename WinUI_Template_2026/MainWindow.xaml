@@ -13,8 +13,10 @@
         <MicaBackdrop />
     </Window.SystemBackdrop>
 
-    <Grid RowDefinitions="48,5*,5*" Background="Transparent">
-        <TitleBar Title="{x:Bind AppWindow.Title}"/>
+    <Grid RowDefinitions="48,5*,5*" Background="Transparent" Loaded="RootGrid_Loaded">
+        <TitleBar Title="{x:Bind AppWindow.Title}">
+            <TextBlock x:Name="m_titleBarText"/>
+        </TitleBar>
         <Grid Grid.Row="1" ColumnDefinitions="5*,5*">
             <Grid Grid.Column="0" Background="{ThemeResource CardBackgroundFillColorDefault}"/>
             <Grid Grid.Column="1"/>
