@@ -25,6 +25,19 @@
 	<PublishSingleFile>true</PublishSingleFile>
     <PublishDir>bin\$(Configuration)\$(TargetFramework)\$(RuntimeIdentifier)\publish\</PublishDir>
   </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Packaged)'=='true'">
+    <AppxBundleNameForOutput>$(ProjectName)</AppxBundleNameForOutput>
+	<AppInstallerUri>$(SolutionDir)bin$(ProjectName)\$(TargetFramework)</AppInstallerUri>
+	<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
+	<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+	<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+	<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+	<GenerateTestArtifacts>False</GenerateTestArtifacts>
+	<AppxBundle>Auto</AppxBundle>
+	<AppxBundlePlatforms>x86|x64|arm64</AppxBundlePlatforms>
+	<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+  </PropertyGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
