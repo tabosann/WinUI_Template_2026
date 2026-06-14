@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
@@ -12,11 +12,13 @@
     <WinUISDKReferences>false</WinUISDKReferences>
     <EnableMsixTooling>true</EnableMsixTooling>
     <Nullable>enable</Nullable>
-    <Configurations>Debug;Release;Debug_Unpackaged;Release_Unpackaged</Configurations>
+    <Configurations>Debug;Release;Debug_Unpackaged;Release_Unpackaged;Release_Unpackaged_AOT;Release_AOT</Configurations>
 	<Packaged>true</Packaged>
-	<Packaged Condition="'$(Configuration)'=='Debug_Unpackaged' or '$(Configuration)'=='Release_Unpackaged'">false</Packaged>
+	<Packaged Condition="'$(Configuration)'=='Debug_Unpackaged' or '$(Configuration)'=='Release_Unpackaged' or '$(Configuration)'=='Release_Unpackaged_AOT'">false</Packaged>
 	<Optimized>true</Optimized>
 	<Optimized Condition="'$(Configuration)'=='Debug' or '$(Configuration)'=='Debug_Unpackaged'">false</Optimized>
+	<PublishAot>false</PublishAot>
+	<PublishAot Condition="'$(Configuration)'=='Release_AOT' or '$(Configuration)'=='Release_Unpackaged_AOT'">true</PublishAot>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Packaged)'=='false'">
@@ -37,6 +39,13 @@
 	<AppxBundle>Auto</AppxBundle>
 	<AppxBundlePlatforms>x86|x64|arm64</AppxBundlePlatforms>
 	<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(PublishAot)'=='true'">
+    <PublishSingleFile>false</PublishSingleFile>
+	<IsAotCompatible>true</IsAotCompatible>
+	<SuppressTrimAnalysisWarnings>false</SuppressTrimAnalysisWarnings>
+	<OptimizationPreference>speed</OptimizationPreference>
   </PropertyGroup>
 
   <ItemGroup>
