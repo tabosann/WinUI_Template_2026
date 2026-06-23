@@ -25,12 +25,12 @@
 	<WindowsPackageType>None</WindowsPackageType>
 	<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	<PublishSingleFile>true</PublishSingleFile>
-    <PublishDir>$(SolutionDir)bin\$(MSBuildProjectName)\$(Configuration)\$(TargetFramework)\$(RuntimeIdentifier)</PublishDir>
+    <PublishDir>$(SolutionDir)bin\$(Configuration)\$(TargetFramework)\$(RuntimeIdentifier)</PublishDir>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Packaged)'=='true'">
     <AppxBundleNameForOutput>$(MSBuildProjectName)</AppxBundleNameForOutput>
-	<AppInstallerUri>$(SolutionDir)bin\$(MSBuildProjectName)\$(Configuration)\$(TargetFramework)</AppInstallerUri>
+	<AppInstallerUri>$(SolutionDir)bin\$(Configuration)\$(TargetFramework)</AppInstallerUri>
 	<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
 	<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
 	<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
